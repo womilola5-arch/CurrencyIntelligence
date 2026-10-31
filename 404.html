@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <meta name="theme-color" content="#10161d" />
+    <meta name="description" content="Currency Intelligence — a clearer read on the world's currencies." />
+    <link rel="icon" type="image/png" href="/CurrencyIntelligence/assets/currency-intelligence-logo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <title>Currency Intelligence</title>
+    <style>
+      #ci-startup-loader { position:fixed; inset:0; z-index:9999; display:grid; place-items:center; background:var(--background,#f7f5f0); color:var(--foreground,#17212a); opacity:1; visibility:visible; transition:opacity .42s ease,visibility .42s ease; }
+      .dark #ci-startup-loader { background:#151b20; color:#f1f1ec; }
+      #ci-startup-loader.is-ready { opacity:0; visibility:hidden; pointer-events:none; }
+      .ci-startup-inner { display:flex; flex-direction:column; align-items:center; gap:18px; }
+      .ci-startup-logo { width:76px; height:76px; object-fit:contain; animation:ci-logo-arrive 1.05s cubic-bezier(.23,1,.32,1) both; }
+      .ci-startup-wordmark { font:600 13px/1 'DM Sans',sans-serif; letter-spacing:.18em; text-transform:uppercase; opacity:0; animation:ci-wordmark-arrive .65s ease .18s both; }
+      .ci-startup-rule { width:32px; height:1px; background:#1a8a83; opacity:0; animation:ci-rule-arrive .55s ease .32s both; }
+      @keyframes ci-logo-arrive { from { opacity:0; transform:translateX(-7px) scale(.94); } to { opacity:1; transform:translateX(0) scale(1); } }
+      @keyframes ci-wordmark-arrive { from { opacity:0; transform:translateY(5px); } to { opacity:.78; transform:translateY(0); } }
+      @keyframes ci-rule-arrive { from { opacity:0; transform:scaleX(.5); } to { opacity:.7; transform:scaleX(1); } }
+      @media (prefers-reduced-motion: reduce) { #ci-startup-loader, .ci-startup-logo, .ci-startup-wordmark, .ci-startup-rule { animation:none; transition:none; } .ci-startup-logo, .ci-startup-wordmark, .ci-startup-rule { opacity:1; transform:none; } }
+    </style>
+    <script type="module" crossorigin src="/CurrencyIntelligence/assets/index-D1F1-0GM.js"></script>
+    <link rel="stylesheet" crossorigin href="/CurrencyIntelligence/assets/index-CdML7ey4.css">
+  </head>
+  <body>
+
+    <div id="ci-startup-loader" role="status" aria-live="polite" aria-label="Loading Currency Intelligence">
+      <div class="ci-startup-inner">
+        <img class="ci-startup-logo" src="/CurrencyIntelligence/assets/currency-intelligence-logo.png" alt="" />
+        <span class="ci-startup-rule" aria-hidden="true"></span>
+        <span class="ci-startup-wordmark">Currency Intelligence</span>
+      </div>
+    </div>
+    <div id="root"></div>
+    <script>
+      (() => {
+        try { if (localStorage.getItem("theme") === "dark") document.documentElement.classList.add("dark"); } catch {}
+        const loader = document.getElementById("ci-startup-loader");
+        let fallback;
+        const finish = () => { if (!loader) return; window.clearTimeout(fallback); loader.classList.add("is-ready"); };
+        window.__CI_APP_READY__ = finish;
+        fallback = window.setTimeout(finish, 8000);
+      })();
+    </script>
+    <script defer src="https://manus-analytics.com/umami" data-website-id="7e947187-d509-469a-986a-ba9c46b6fa68"></script>
+  </body>
+</html>
