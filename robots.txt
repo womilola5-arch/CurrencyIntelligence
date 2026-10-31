@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://womilola5-arch.github.io/CurrencyIntelligence/sitemap.xml
